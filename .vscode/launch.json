@@ -1,0 +1,24 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "(lldb) Launch",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/a.out",
+			"args": ["281", "53", "18", "90", "105", "16", "65", "28", "40", "7", "192", "45", "58",
+					"72", "46", "26", "99", "73", "56", "83", "14", "21", "11", "6", "77", "9", "17",
+				 "31", "95", "10", "78", "38", "24", "63", "57", "86", "405", "48", "44", "51", "80",
+				 "5","60","35", "133", "22", "66", "75", "30", "91", "256", "50", "96", "88", "27",
+				 "70", "25", "42", "67", "201", "37", "180", "89", "79", "93", "49", "94", "19", "61", "54", "160", "1", "47"],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": true,
+			"MIMode": "lldb"
+		}
+	]
+}
