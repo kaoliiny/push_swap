@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaoliiny <kaoliiny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 22:21:43 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/03 21:23:00 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/03/04 00:26:49 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	pivots_searching(int *tab, t_main *st)
 		st->il++ && (st->count > 900) ? (i *= 1.3) : (i *= 1.5);
 	}
 	(st->count > 420) && (st->big_pivots[st->ib] = tab[a + st->count / 18]) && st->ib++;
-	(st->count > 75) && (st->big_pivots[st->ib] = tab[a + st->count / 10]) && st->ib++;
+	(st->count > 75) && (st->big_pivots[st->ib] = tab[a + st->count / 8]) && st->ib++;
 	(st->count > 200) && (st->big_pivots[st->ib] = tab[a + st->count / 5]) && st->ib++;
 	i = 4;
 	while ((a += st->count / (int)i) < st->count)
@@ -56,9 +56,9 @@ static void	pivots_searching(int *tab, t_main *st)
 		if (tab[a] == st->big_pivots[st->ib - 1])
 			(st->count > 400) ? (a += 8) : (a += 2);
 	}
-	(st->big_pivots[st->ib - 1] < tab[st->count - 4])
-	? (st->big_pivots[st->ib] = tab[st->count - 4])
-	: (st->big_pivots[st->ib - 1] = tab[st->count - 4]);
+	(st->big_pivots[st->ib - 1] < tab[st->count - 3])
+	? (st->big_pivots[st->ib] = tab[st->count - 3])
+	: (st->big_pivots[st->ib - 1] = tab[st->count - 3]);
 }
 
 static int	sort_int(int *tab, unsigned int size, t_main *st)

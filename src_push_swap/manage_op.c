@@ -6,7 +6,7 @@
 /*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 18:06:29 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/01 18:07:55 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/03/04 00:45:02 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 bool	push_stack(t_stack **dest, t_stack **src)
 {
 	t_stack *tmp;
+	// t_stack	*free_st;
 
 	tmp = *dest;
 	if (!src || !dest || !*src)
@@ -27,7 +28,10 @@ bool	push_stack(t_stack **dest, t_stack **src)
 		tmp->next = *dest;
 		*dest = tmp;
 	}
+	// free_st = *src;
 	*src = (*src)->next;
+	// free(free_st);
+	// free_st = NULL;
 	return (true);
 }
 
@@ -59,7 +63,10 @@ bool	rotate_a(t_stack **stack)
 		}
 		tmp = tmp->next;
 	}
+	tmp = *stack;
 	*stack = (*stack)->next;
+	free(tmp);
+	tmp = NULL;
 	return (true);
 }
 
@@ -78,8 +85,6 @@ t_stack	*rev_rotate(t_stack **stack, t_main *st)
 		else
 		{
 			last = tmp;
-			// free(tmp);
-			// tmp->next = NULL;
 			last->next = *stack;
 			st->last_a->next = NULL;
 			return (last);

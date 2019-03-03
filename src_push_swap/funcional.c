@@ -6,7 +6,7 @@
 /*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 22:21:43 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/01 18:18:54 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/03/03 23:45:28 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int		if_max(t_stack *stack, int digit, t_main *st)
 	return (0);
 }
 
-ssize_t		ft_atoi_spec(const char *str)
+ssize_t	ft_atoi_spec(const char *str)
 {
 	int					i;
 	unsigned long int	sum;

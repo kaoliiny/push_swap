@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alg_second_part.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaoliiny <kaoliiny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 22:21:43 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/03 21:13:07 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/03/03 23:44:35 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int			if_min(t_stack *stack, int digit, t_main *st)
 		if (tmp->digit < digit && tmp->next != NULL)
 			return (1);
 		tmp = tmp->next;
-
 	}
 	return (0);
 }
@@ -36,7 +35,7 @@ void		shakin_b(t_main *st, int i)
 	t_stack		*tmp;
 
 	tmp = st->a;
-    while (st->b != NULL && st->b->digit >= st->little_pivots[1])
+	while (st->b != NULL && st->b->digit >= st->little_pivots[1])
 	{
 		if (st->b->digit <= st->little_pivots[i])
 			rotate_a(&st->b) && print_op("rb\n");
@@ -118,7 +117,7 @@ void		one_more_bit(t_main *st)
 	{
 		st->a = rev_rotate(&st->a, st);
 		print_op("rra\n");
-	}	
+	}
 	while (a_last != NULL && a_last->next != NULL && st->b != NULL)
 	{
 		st->b = rev_rotate(&st->b, st);

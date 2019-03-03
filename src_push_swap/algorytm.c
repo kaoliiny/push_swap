@@ -6,7 +6,7 @@
 /*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 22:21:43 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/03 22:14:21 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/03/04 00:48:23 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,8 @@ void		shake_b(int point, int count, t_main *st)
 	}
 }
 
-void		bit(t_main *st)
+void	main_alg(t_main *st)
 {
-	int		i;
-	t_stack	*tmp;
-
-	i = 0;
-	tmp = st->a;
-	while (i <= st->ib && st->a->next != NULL) // && !is_sort(st->a, st)
-	{
-		shake_b(st->big_pivots[i], st->count, st);
-		if (st->a == NULL || st->a->next == NULL || st->a->next->next == NULL)
-			break ;
-		i++;
-	}
-	if (--i && st->a->next && st->a->digit >= st->a->next->digit)
-		swap_first_el(st->a) && print_op("sa\n");
-	print_op("\0");
-	if (is_sorted_stack_a(st->a, st) && st->b == NULL)
-		return ;
-	(st->a->next) ? (st->last_b = st->a->next) : (st->last_b = st->a);
 	while (st->b && st->b->digit >= st->first_p)
 	{
 	 	if (is_sort(st->b, st))
@@ -85,12 +67,36 @@ void		bit(t_main *st)
 				st->a = rev_rotate(&st->a, st);
 				write(1, "rra\n", 4);
 			}
+			(st->b && st->b->digit >= st->first_p) && 
 			push_stack(&st->a, &st->b) && write(1, "pa\n", 3);
 		}
 		else
 			while (st->b->digit > st->a->digit)
 				 rotate_a(&st->a) && write(1, "ra\n", 3);
 	}
+}
+
+void		bit(t_main *st)
+{
+	int		i;
+	t_stack	*tmp;
+
+	i = 0;
+	tmp = st->a;
+	while (i <= st->ib && st->a->next != NULL)
+	{
+		shake_b(st->big_pivots[i], st->count, st);
+		if (st->a == NULL || st->a->next == NULL || st->a->next->next == NULL)
+			break ;
+		i++;
+	}
+	if (--i && st->a->next && st->a->digit >= st->a->next->digit)
+		swap_first_el(st->a) && print_op("sa\n");
+	print_op("\0");
+	if (is_sorted_stack_a(st->a, st) && st->b == NULL)
+		return ;
+	(st->a->next) ? (st->last_b = st->a->next) : (st->last_b = st->a);
+	main_alg(st);
 	while (st->last_b->next)
 	{
 		st->a = rev_rotate(&st->a, st);
@@ -110,13 +116,13 @@ void		bit_of_magic(int point, t_main *st)
 	new_point_a = 0;
 	while (size++ < st->count)
 	{
-		if (tmp->digit >= point)
+		if (tmp && tmp->digit >= point)
 			rotate_a(&st->a) && print_op("ra\n") &&
 			(new_point_a += tmp->digit) && (st->last_a = tmp);
 		else
 			push_stack(&st->b, &st->a) && print_op("pb\n") &&
 			(st->b->digit < st->little_pivots[1])
-			&& rotate_a(&st->b) && print_op("rb\n");
+			&& (st->b->next) && rotate_a(&st->b) && print_op("rb\n");
 		tmp = tmp->next;
 	}
 	if (st->count > 0)
