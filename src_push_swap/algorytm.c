@@ -3,135 +3,122 @@
 /*                                                        :::      ::::::::   */
 /*   algorytm.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbrazas <vbrazas@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 22:21:43 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/02/11 21:00:34 by vbrazas          ###   ########.fr       */
+/*   Updated: 2019/03/03 22:14:21 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		shake_b(int point, int count, t_main *st)
+void		shake_b(int point, int count, t_main *st)
 {
-	int	num;
-	t_stack	*tmp;
-	int	new_point;
+	bool		i;
+	int			digit;
+	t_stack		*tmp;
+	int			new_point;
 
-	num = 0;
-	tmp = st->b;
+	i = false;
+	tmp = st->a;
 	new_point = 0;
 	while (count--)
 	{
 		if (!tmp)
-			return (0);
-		(tmp->digit >= point) ? push_stack(&st->a, &st->b) && write(1, "pa\n", 3) : rotate_a(&st->b)
-		&& write(1, "rb\n", 3) && ++num && (new_point += tmp->digit);
-		if (st->a->digit > st->a->next->digit)
-		{
-			swap_first_el(st->a);
-			write(1, "sa\n", 3);
-		}
-		tmp = tmp->next;
-	}
-	(num > 2) && (st->count = num);
-	(st->b) && (st->size_b = num);
-	(num) && (new_point /= num);
-	return (new_point);
-}
-
-void		bit2(int point, t_main *st)
-{
-	int	size = 0;
-	int p;
-	t_stack	*tmp;
-
-	tmp = st->a;
-	while (++size && tmp->digit <= point)
-	{
-		push_stack(&st->b, &st->a) && write(1, "pb\n", 3);
-		tmp = tmp->next;
-	}
-	point /= 2;
-	point += point / 2;
-	p = point;
-	while (st->b && st->size_b)
-		point = shake_b(point, size, st);
-	while (st->a->digit > last_a(st->a) && st->a->digit <= p)
-	{
-		if (st->a->digit > st->a->next->digit)
-		{
-			swap_first_el(st->a);
-			write(1, "sa\n", 3);
-		}
-		rotate_a(&st->a) && write(1, "ra\n", 3);
-	}
-}
-
-void		bit(int point, t_main *st)
-{
-	int flag;
-	int	size = 0;
-	t_stack	*tmp;
-
-	flag = 0;
-	tmp = st->a;
-	while (++size && tmp->digit <= point)
-	{
-		if (tmp->digit > st->first_p && (flag = 1))
+			return ;
+		(i == 0 && tmp->digit > point) && (i = 1) && (digit = st->a->digit);
+		(tmp->digit <= point) ?
+		push_stack(&st->b, &st->a) && print_op("pb\n")
+		: rotate_a(&st->a) && print_op("ra\n")
+		&& (new_point += tmp->digit);
+		if (tmp->next != NULL && tmp->next->digit != digit)
+			tmp = tmp->next;
+		else
 			break ;
-		push_stack(&st->b, &st->a) && write(1, "pb\n", 3);
-		tmp = tmp->next;
 	}
-	point /= 2;
-	while (st->b && st->size_b)
-		point = shake_b(point, size, st);
-	while (st->a->digit > last_a(st->a) && st->a->digit <= st->point)
-	{
-		if (st->a->digit > st->a->next->digit)
-		{
-			swap_first_el(st->a);
-			write(1, "sa\n", 3);
-		}
-		rotate_a(&st->a) && write(1, "ra\n", 3);
-	}
-	if (flag == 1)
-		return ;
-	if (st->a->digit > st->first_p && (point = st->max)
-	&& (st->point = st->max + 1))
-	{
-		write(1, "\n\n\n", 3);
-		second_part_bit(point, st, true);
-	}
-	bit2(st->point *= 2, st);
-	bit(st->point, st);
 }
 
-void		bit_of_magic(int point, t_main *st, bool x)
+void		bit(t_main *st)
 {
-	int b;
-	int	size;
-	int new_point_a;
+	int		i;
+	t_stack	*tmp;
+
+	i = 0;
+	tmp = st->a;
+	while (i <= st->ib && st->a->next != NULL) // && !is_sort(st->a, st)
+	{
+		shake_b(st->big_pivots[i], st->count, st);
+		if (st->a == NULL || st->a->next == NULL || st->a->next->next == NULL)
+			break ;
+		i++;
+	}
+	if (--i && st->a->next && st->a->digit >= st->a->next->digit)
+		swap_first_el(st->a) && print_op("sa\n");
+	print_op("\0");
+	if (is_sorted_stack_a(st->a, st) && st->b == NULL)
+		return ;
+	(st->a->next) ? (st->last_b = st->a->next) : (st->last_b = st->a);
+	while (st->b && st->b->digit >= st->first_p)
+	{
+	 	if (is_sort(st->b, st))
+	 	{
+			if (st->b->next->digit && st->b->digit < st->b->next->digit)
+				swap_first_el(st->b) && write(1, "sb\n", 3);
+			while (if_max(st->last_b, st->b->digit, st))
+			{
+				st->a = rev_rotate(&st->a, st);
+				write(1, "rra\n", 4);
+			}
+			(st->b->digit < st->a->digit) &&
+			push_stack(&st->a, &st->b) && write(1, "pa\n", 3);
+		}
+		if (st->b->digit > st->a->digit && if_max(st->last_b, st->a->digit, st))
+			while (st->b->digit > st->a->digit && if_max(st->last_b, st->a->digit, st))
+			{
+				st->a = rev_rotate(&st->a, st);
+				write(1, "rra\n", 4);
+			}
+		else if (st->b->digit < st->a->digit)
+		{
+			while (st->b->digit < st->a->digit && if_max(st->last_b, st->b->digit, st))
+			{
+				st->a = rev_rotate(&st->a, st);
+				write(1, "rra\n", 4);
+			}
+			push_stack(&st->a, &st->b) && write(1, "pa\n", 3);
+		}
+		else
+			while (st->b->digit > st->a->digit)
+				 rotate_a(&st->a) && write(1, "ra\n", 3);
+	}
+	while (st->last_b->next)
+	{
+		st->a = rev_rotate(&st->a, st);
+		write(1, "rra\n", 4);
+	}
+	one_more_bit(st);
+}
+
+void		bit_of_magic(int point, t_main *st)
+{
+	int		size;
+	int		new_point_a;
 	t_stack	*tmp;
 
 	tmp = st->a;
-	b = 0;
 	size = 0;
 	new_point_a = 0;
 	while (size++ < st->count)
 	{
-		(tmp->digit >= point) ? rotate_a(&st->a) && write(1, "ra\n", 3) && (new_point_a += tmp->digit)
-		&& (st->last_a = tmp) : push_stack(&st->b, &st->a) && write(1, "pb\n", 3)  && b++;
+		if (tmp->digit >= point)
+			rotate_a(&st->a) && print_op("ra\n") &&
+			(new_point_a += tmp->digit) && (st->last_a = tmp);
+		else
+			push_stack(&st->b, &st->a) && print_op("pb\n") &&
+			(st->b->digit < st->little_pivots[1])
+			&& rotate_a(&st->b) && print_op("rb\n");
 		tmp = tmp->next;
 	}
-	st->size_b = b;
-	point /= 2;
-	st->point = point;
-	st->count -= b;
-	while(st->b && st->size_b)
-		point = shake_b(point, st->size_b, st);
-	 while ((st->size_b--) > 0)
-	 	rotate_a(&st->a) && write(1, "ra\n", 3);
-	 if (st->count > 0)
-	 	bit(st->point, st);
+	if (st->count > 0)
+	 	bit(st);
 }

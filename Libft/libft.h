@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaoliiny <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kaoliiny <kaoliiny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/27 20:41:01 by kaoliiny          #+#    #+#             */
-/*   Updated: 2018/11/12 19:26:43 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/02/17 16:40:53 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void			ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 int				ft_randint(void);
 void			ft_capitalize(char *str);
 void			ft_sort_params(int argc, char **argv);
-void			sort_int_tab(int *tab, unsigned int size);
+void			sort_int_tab(int **tab, unsigned int size);
 void			ft_list_push_back(t_list **begin_list, void *data);
 
 #endif

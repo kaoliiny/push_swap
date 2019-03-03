@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: kaoliiny <kaoliiny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 22:14:48 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/02/11 21:42:45 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/03/03 21:23:00 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@
 # include "libft.h"
 # include <unistd.h>
 
+# define LITTLE_PIVOTS st->little_pivots[st->il]
+
 typedef struct t_stack
 {
-	int	digit;
-	struct t_stack *next;
+	int				digit;
+	struct t_stack	*next;
 }	t_stack;
 
 typedef struct t_main_st
@@ -36,33 +38,39 @@ typedef struct t_main_st
 	int		min;
 	int		max;
 
-	int		first_p;
-	int		point;
-	int		size_b;
 	int		count;
+	int		point;
+	int		first_p;
+
+	int		big_pivots[25];
+	int		little_pivots[25];
+	int		ib;
+	int		il;
 
 }	t_main;
-
-void	second_part_bit(int point, t_main *st, bool x);
-int		shake_b(int point, int count, t_main *st);
 
 void	manage_error(int errno);
 void	validation(t_main *st, int argc, char **argv);
 
-int		last_a(t_stack *stack);
-int		is_sort(t_stack *stack, int point, t_main *st);
-int		is_r_sort(t_stack *stack, int point, t_main *st);
+ssize_t	ft_atoi_spec(const char *str);
 
+int		if_max(t_stack *stack, int digit, t_main *st);
+int		is_sort(t_stack *stack, t_main *st);
+bool	is_sorted_stack_a(t_stack *stack, t_main *st);
+
+t_stack	*last_a(t_stack *stack);
 t_stack	*ft_newlst(int integert);
 void	stack_create(t_stack **a, int integer, t_main *st);
 
 bool	push_stack(t_stack **dest, t_stack **src);
-void	swap_first_el(t_stack *stack);
+bool	swap_first_el(t_stack *stack);
 bool	rotate_a(t_stack **stack);
 t_stack *rev_rotate(t_stack **stack, t_main *st);
 
-void	bit(int point, t_main *st);
-void	bit2(int point, t_main *st);
-void	bit_of_magic(int point, t_main *st, bool x);
+void	bit(t_main *st);
+void	bit_of_magic(int point, t_main *st);
+void	one_more_bit(t_main *st);
+
+bool	print_op(char op[5]);
 
 #endif

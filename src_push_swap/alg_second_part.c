@@ -3,112 +3,136 @@
 /*                                                        :::      ::::::::   */
 /*   alg_second_part.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: kaoliiny <kaoliiny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 22:21:43 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/02/11 23:52:26 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/03/03 21:13:07 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		check(int point, int count, t_main *st)
+int			if_min(t_stack *stack, int digit, t_main *st)
 {
-	float	n;
-	int		b;
-	int		num;
-	t_stack	*tmp;
-	int		new_point;
+	t_stack *tmp;
 
-	b = 0;
-	num = 0;
-	tmp = st->b;
-	new_point = 0;
-	while (count--)
+	if (!stack || stack->digit == st->first_p)
+		return (0);
+	tmp = stack;
+	while (tmp && tmp->next && tmp->digit < st->first_p)
 	{
-		if(!tmp)
+		if (tmp->digit >= st->first_p)
 			break ;
-		(tmp->digit > point) ? (new_point += tmp->digit) && b++ : ++num;
+		if (tmp->digit < digit && tmp->next != NULL)
+			return (1);
 		tmp = tmp->next;
+
 	}
-	(num > 2) && (st->count = num);
-	return ((num) ? 0 : (new_point / b));
+	return (0);
 }
 
-int		rev_shake_b(int point, int count, t_main *st)
+void		shakin_b(t_main *st, int i)
 {
-	int	num;
-	t_stack	*tmp;
-	int	new_point;
-	int chick = 0;
-
-	num = 0;
-	tmp = st->b;
-	new_point = 0;
-	if ((chick = check(point, count, st)))
-		point = chick;
-	while (count--)
-	{
-		if(!tmp)
-			return (0);
-		(tmp->digit >= point) ? push_stack(&st->a, &st->b) && write(1, "pa\n", 3) : rotate_a(&st->b)
-		&& write(1, "rb\n", 3) && ++num && (new_point += tmp->digit);
-		tmp = tmp->next;
-	}
-	st->last_b = tmp;
-	(st->count = num);
-	(st->b) && (st->size_b = num);
-	(num) && (new_point /= num);
-	return (new_point);
-}
-
-void	second_part_bit(int point, t_main *st, bool x)
-{
-	static int		i;
-	static int		pivots[25];
-	int				size = 0;
-	t_stack			*tmp;
+	t_stack		*tmp;
 
 	tmp = st->a;
-	while (++size && tmp->digit > st->min && tmp->digit <= point)
-		push_stack(&st->b, &st->a) && write(1, "pb\n", 3) && (tmp = tmp->next);
-	(x) && (pivots[i] = point);
-	(st->b == NULL)
-	&& (st->point = point * 1.5);
+    while (st->b != NULL && st->b->digit >= st->little_pivots[1])
+	{
+		if (st->b->digit <= st->little_pivots[i])
+			rotate_a(&st->b) && print_op("rb\n");
+		else
+		{
+			while (if_min(st->a, st->b->digit, st))
+				rotate_a(&st->a) && print_op("ra\n");
+			while (st->b->digit < st->a->digit
+				&& if_max(st->last_b, st->b->digit, st))
+			{
+				st->a = rev_rotate(&st->a, st);
+				print_op("rra\n");
+			}
+			push_stack(&st->a, &st->b) && print_op("pa\n");
+		}
+		if (tmp->next == NULL)
+			break ;
+		tmp = tmp->next;
+	}
+}
+
+void		shake(t_main *st, t_stack *a_last)
+{
+	int	i;
+
+	i = 3;
+	while (i <= st->il)
+	{
+		while (st->b != a_last && st->b != NULL)
+			if (st->b->digit <= st->little_pivots[i])
+				rotate_a(&st->b) && print_op("rb\n");
+			else
+			{
+				while (if_min(st->a, st->b->digit, st))
+					rotate_a(&st->a) && print_op("ra\n");
+				while (st->b->digit < st->a->digit
+					&& if_max(st->last_b, st->b->digit, st))
+				{
+					st->a = rev_rotate(&st->a, st);
+					print_op("rra\n");
+				}
+				push_stack(&st->a, &st->b) && print_op("pa\n");
+			}
+		if (st->b->digit == a_last->digit)
+			a_last = last_a(st->b);
+		i++;
+	}
+}
+
+void		last_shake(t_main *st)
+{
 	while (st->b)
 	{
-		if (is_r_sort(st->b, pivots[i], st))
-			while(st->b)
-				push_stack(&st->a, &st->b) && write(1, "pa\n", 3);
-		else
+		while (if_min(st->a, st->b->digit, st))
+			rotate_a(&st->a) && print_op("ra\n");
+		while (st->b->digit < st->a->digit
+			&& if_max(st->last_b, st->b->digit, st))
 		{
-			point = rev_shake_b(point, size, st);
-			(point && x) && ++i && (pivots[i] = point);
+			st->a = rev_rotate(&st->a, st);
+			print_op("rra\n");
 		}
+		push_stack(&st->a, &st->b) && print_op("pa\n");
 	}
-	while (st->a->digit != st->min)
+	print_op("\0");
+	while (st->last_b->next != NULL)
 	{
-		if (is_sort(st->a, pivots[i], st))
-		{
-			if (st->a->digit > st->a->next->digit && st->a->next->digit != st->min)
-			{
-				swap_first_el(st->a);
-				write(1, "sa\n", 3);
-			}
-			if (st->b)
-				if (st->a->digit > st->b->digit)
-					push_stack(&st->a, &st->b) && write(1, "pa\n", 3);
-			rotate_a(&st->a) && write(1, "ra\n", 3);
-		}
-		else if (st->a->digit < pivots[i])
-				push_stack(&st->b, &st->a) && write(1, "pb\n", 3);
-		else
-		{
-			(st->b) && push_stack(&st->a, &st->b) && write(1, "pa\n", 3);
-			break ;
-		}
+		st->a = rev_rotate(&st->a, st);
+		write(1, "rra\n", 4);
 	}
-	if (st->a->digit == st->min)
-		exit(0);
-	second_part_bit(pivots[--i], st, false);
+}
+
+void		one_more_bit(t_main *st)
+{
+	t_stack	*a_last;
+
+	a_last = last_a(st->b);
+	shakin_b(st, 0);
+	while (st->last_b->next != NULL)
+	{
+		st->a = rev_rotate(&st->a, st);
+		print_op("rra\n");
+	}	
+	while (a_last != NULL && a_last->next != NULL && st->b != NULL)
+	{
+		st->b = rev_rotate(&st->b, st);
+		print_op("rrb\n");
+		while (if_min(st->a, st->b->digit, st))
+			rotate_a(&st->a) && print_op("ra\n");
+		while (st->b->digit < st->a->digit
+			&& if_max(st->last_b, st->b->digit, st))
+		{
+			st->a = rev_rotate(&st->a, st);
+			print_op("rra\n");
+		}
+		push_stack(&st->a, &st->b) && print_op("pa\n");
+	}
+	shake(st, a_last);
+	last_shake(st);
 }
