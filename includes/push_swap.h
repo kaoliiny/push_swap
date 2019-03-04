@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaoliiny <kaoliiny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 22:14:48 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/03 21:23:00 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/03/04 20:19:42 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ ssize_t	ft_atoi_spec(const char *str);
 
 int		if_max(t_stack *stack, int digit, t_main *st);
 int		is_sort(t_stack *stack, t_main *st);
-bool	is_sorted_stack_a(t_stack *stack, t_main *st);
+bool	is_sorted_stack_a(t_stack *stack);
 
 t_stack	*last_a(t_stack *stack);
 t_stack	*ft_newlst(int integert);

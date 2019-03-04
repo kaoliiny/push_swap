@@ -9,7 +9,7 @@
 			"name": "(lldb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/push_swap",
+			"program": "${workspaceFolder}/checker",
 			"args": ["64", "32", "67", "81"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",

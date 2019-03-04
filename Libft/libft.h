@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaoliiny <kaoliiny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/27 20:41:01 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/02/17 16:40:53 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/03/04 15:21:54 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ typedef struct	s_list
 	size_t			content_size;
 	struct s_list	*next;
 }				t_list;
+
+# define BUFF_SIZE 3
 
 int				ft_tolower(int c);
 int				ft_toupper(int c);
@@ -101,5 +103,7 @@ void			ft_capitalize(char *str);
 void			ft_sort_params(int argc, char **argv);
 void			sort_int_tab(int **tab, unsigned int size);
 void			ft_list_push_back(t_list **begin_list, void *data);
+
+int				get_next_line(const int fd, char **line);
 
 #endif
