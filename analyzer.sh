@@ -37,8 +37,10 @@ while [[ $IND -gt 0 ]];
 do
 	ARG=`ruby -e "puts ($NBRBOT..$NBRTOP).to_a.shuffle.join(' ')"`
 	NBRCOUP=$(./push_swap $ARG | wc -l);
-	TEST=$(./push_swap $ARG | ./checker $ARG);
-	if [ $TEST == "OK" ]; then
+	# echo $TEST;
+	TEST=`./push_swap $ARG | ./checker $ARG | grep OK`;
+	# if [[ $TEST == "\033[0;92mOK\n" ]]; then
+	if [[ "$TEST" ]]; then
 		printf "\033[0;32m▓\033[0;0m"
 		let WELL++;
 	else

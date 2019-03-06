@@ -6,7 +6,7 @@
 /*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/27 20:41:01 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/04 15:21:54 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/03/06 21:13:59 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
-# define BUFF_SIZE 3
+# define BUFF_SIZE 4
 
 int				ft_tolower(int c);
 int				ft_toupper(int c);
@@ -100,9 +100,9 @@ void			ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 
 int				ft_randint(void);
 void			ft_capitalize(char *str);
+void 			free_array(char***free_me);
 void			ft_sort_params(int argc, char **argv);
 void			sort_int_tab(int **tab, unsigned int size);
-void			ft_list_push_back(t_list **begin_list, void *data);
 
 int				get_next_line(const int fd, char **line);
 

@@ -6,7 +6,7 @@
 /*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 22:14:48 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/04 20:19:42 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/03/07 00:44:09 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,22 @@
 # include "libft.h"
 # include <unistd.h>
 
-# define LITTLE_PIVOTS st->little_pivots[st->il]
+# define LITTLE_PIVOTS	st->little_pivots[st->il]
+# define BIG_PIVOTS		st->big_pivots[st->ib]
 
-typedef struct t_stack
+# define A_DIGIT		st->a->digit
+# define B_DIGIT		st->b->digit
+
+# define A_N_D			st->a->next->digit
+
+typedef struct	t_stack
 {
 	int				digit;
 	struct t_stack	*next;
-}	t_stack;
 
-typedef struct t_main_st
+}				t_stack;
+
+typedef struct	t_main_st
 {
 	struct t_stack	*a;
 	struct t_stack	*b;
@@ -35,42 +42,42 @@ typedef struct t_main_st
 	struct t_stack	*last_a;
 	struct t_stack	*last_b;
 
-	int		min;
-	int		max;
+	int				min;
+	int				max;
 
-	int		count;
-	int		point;
-	int		first_p;
+	int				count;
+	int				point;
+	int				first_p;
 
-	int		big_pivots[25];
-	int		little_pivots[25];
-	int		ib;
-	int		il;
+	int				big_pivots[25];
+	int				little_pivots[25];
+	int				ib;
+	int				il;
 
-}	t_main;
+}				t_main;
 
-void	manage_error(int errno);
-void	validation(t_main *st, int argc, char **argv);
+void			manage_error(int errno);
+void			validation(t_main *st, int argc, char **argv);
 
-ssize_t	ft_atoi_spec(const char *str);
+ssize_t			ft_atoi_spec(const char *str);
 
-int		if_max(t_stack *stack, int digit, t_main *st);
-int		is_sort(t_stack *stack, t_main *st);
-bool	is_sorted_stack_a(t_stack *stack);
+int				if_max(t_stack *stack, int digit, t_main *st);
+int				is_sort(t_stack *stack, t_main *st);
+bool			is_sorted_stack_a(t_stack *stack);
 
-t_stack	*last_a(t_stack *stack);
-t_stack	*ft_newlst(int integert);
-void	stack_create(t_stack **a, int integer, t_main *st);
+t_stack			*last_a(t_stack *stack);
+t_stack			*ft_newlst(int integert);
+void			stack_create(t_stack **a, int integer, t_main *st);
 
-bool	push_stack(t_stack **dest, t_stack **src);
-bool	swap_first_el(t_stack *stack);
-bool	rotate_a(t_stack **stack);
-t_stack *rev_rotate(t_stack **stack, t_main *st);
+bool			push_stack(t_stack **dest, t_stack **src);
+bool			swap_first_el(t_stack *stack);
+bool			rotate_a(t_stack **stack);
+t_stack 		*rev_rotate(t_stack **stack, t_main *st);
 
-void	bit(t_main *st);
-void	bit_of_magic(int point, t_main *st);
-void	one_more_bit(t_main *st);
+void			bit(t_main *st);
+void			bit_of_magic(int point, t_main *st);
+void			one_more_bit(t_main *st);
 
-bool	print_op(char op[5]);
+bool			print_op(char op[5]);
 
 #endif
