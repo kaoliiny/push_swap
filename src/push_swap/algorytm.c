@@ -6,7 +6,7 @@
 /*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 22:21:43 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/08 20:13:25 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/03/08 22:52:45 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,22 +115,20 @@ void	bit_of_magic(int point, t_main *st)
 {
 	int		size;
 	int		new_point_a;
-	t_stack	*tmp;
 
-	tmp = st->a;
 	size = 0;
 	new_point_a = 0;
 	while (size++ < st->count)
 	{
-		if (tmp && tmp->digit >= point)
+		if (st->a->digit >= point)
 			rotate_a(&st->a) && print_op("ra\n")
-			&& (new_point_a += tmp->digit) && (st->last_a = tmp);
+			&& (new_point_a += st->a->digit) && (st->last_a = st->a);
 		else
-			push_stack(&st->b, &st->a) && print_op("pb\n") \
-			&& (B_DIGIT < st->little_pivots[1]) \
+			push_stack(&st->b, &st->a) && print_op("pb\n")
+			&& (B_DIGIT < st->little_pivots[1])
 			&& (st->b->next) && rotate_a(&st->b) && print_op("rb\n");
-		tmp = tmp->next;
 	}
-	if (st->count > 0)
-		bit(st);
+	system("leaks -q push_swap");
+	// if (st->count > 0)
+	// 	bit(st);
 }
