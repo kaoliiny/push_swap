@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaoliiny <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 00:16:42 by kaoliiny          #+#    #+#             */
-/*   Updated: 2018/11/12 19:11:28 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/03/07 18:26:10 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 
 	if (!lst || !f)
 		return (NULL);
-    frez = (*f)(lst);
+	frez = (*f)(lst);
 	new = ft_lstnew(frez->content, frez->content_size);
 	created = new;
 	lst = lst->next;

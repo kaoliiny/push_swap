@@ -7,7 +7,7 @@ LIB_PATH :=		../../libft/
 OBJ_PATH :=		.obj/
 
 CC :=			clang
-CFLAGS :=		-g -Wall# -Werror -Wextra
+CFLAGS :=		-g -Wall -Werror -Wextra
 IFLAGS :=		-I $(INC_PATH) -I $(LIB_PATH)
 LFLAGS :=		-lft -L $(LIB_PATH)
 

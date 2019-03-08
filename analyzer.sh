@@ -36,9 +36,9 @@ echo "Analyse in progress ...\n";
 while [[ $IND -gt 0 ]];
 do
 	ARG=`ruby -e "puts ($NBRBOT..$NBRTOP).to_a.shuffle.join(' ')"`
-	NBRCOUP=$(./push_swap $ARG | wc -l);
+	NBRCOUP=$(./push_swap "$ARG" | wc -l);
 	# echo $TEST;
-	TEST=`./push_swap $ARG | ./checker $ARG | grep OK`;
+	TEST=`./push_swap "$ARG" | ./checker "$ARG" | grep OK`;
 	# if [[ $TEST == "\033[0;92mOK\n" ]]; then
 	if [[ "$TEST" ]]; then
 		printf "\033[0;32m▓\033[0;0m"

@@ -6,7 +6,7 @@
 /*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 22:21:43 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/07 17:44:18 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/03/08 17:57:38 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ bool		print_op(char op[5])
 	return (true);
 }
 
-int			is_sort(t_stack *stack, t_main *st)
+int			is_sort(t_stack *stack)
 {
 	int		min;
 	t_stack *tmp;
@@ -71,7 +71,7 @@ void		stack_create(t_stack **a, int integer, t_main *st)
 		return ;
 	}
 	tmp = *a;
-	while (tmp != NULL)
+	while (tmp)
 	{
 		(st->max < integer) && (st->max = integer);
 		(st->min > integer) && (st->min = integer);
@@ -86,7 +86,7 @@ void		stack_create(t_stack **a, int integer, t_main *st)
 	}
 }
 
-int			if_max(t_stack *stack, int digit, t_main *st)
+int			if_max(t_stack *stack, int digit)
 {
 	t_stack *tmp;
 
@@ -127,7 +127,7 @@ ssize_t		ft_atoi_spec(const char *str)
 		sum = sum * 10 + str[i++] - '0';
 		if (sum > INT32_MAX && minus == 1)
 			manage_error(4);
-		if (sum > INT32_MIN + 1 && minus == -1)
+		if (sum > (unsigned long int)INT32_MIN + 1 && minus == -1)
 			manage_error(4);
 	}
 	return (sum * minus);

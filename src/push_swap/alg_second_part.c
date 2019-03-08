@@ -6,7 +6,7 @@
 /*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 22:21:43 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/06 19:56:48 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/03/08 17:55:47 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void		shakin_b(t_main *st, int i)
 			while (if_min(st->a, st->b->digit, st))
 				rotate_a(&st->a) && print_op("ra\n");
 			while (st->b->digit < st->a->digit
-				&& if_max(st->last_b, st->b->digit, st))
+				&& if_max(st->last_b, st->b->digit))
 			{
 				st->a = rev_rotate(&st->a, st);
 				print_op("rra\n");
@@ -72,7 +72,7 @@ void		shake(t_main *st, t_stack *a_last)
 				while (if_min(st->a, st->b->digit, st))
 					rotate_a(&st->a) && print_op("ra\n");
 				while (st->b->digit < st->a->digit
-					&& if_max(st->last_b, st->b->digit, st))
+					&& if_max(st->last_b, st->b->digit))
 				{
 					st->a = rev_rotate(&st->a, st);
 					print_op("rra\n");
@@ -92,7 +92,7 @@ void		last_shake(t_main *st)
 		while (if_min(st->a, st->b->digit, st))
 			rotate_a(&st->a) && print_op("ra\n");
 		while (st->b->digit < st->a->digit
-			&& if_max(st->last_b, st->b->digit, st))
+			&& if_max(st->last_b, st->b->digit))
 		{
 			st->a = rev_rotate(&st->a, st);
 			print_op("rra\n");
@@ -125,7 +125,7 @@ void		one_more_bit(t_main *st)
 		while (if_min(st->a, st->b->digit, st))
 			rotate_a(&st->a) && print_op("ra\n");
 		while (st->b->digit < st->a->digit
-			&& if_max(st->last_b, st->b->digit, st))
+			&& if_max(st->last_b, st->b->digit))
 		{
 			st->a = rev_rotate(&st->a, st);
 			print_op("rra\n");

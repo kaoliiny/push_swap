@@ -6,7 +6,7 @@
 /*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 22:21:43 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/07 17:58:36 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/03/08 20:13:25 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ void	shake_b(int point, int count, t_main *st)
 
 void	algo(t_main *st)
 {
-	if (B_DIGIT > A_DIGIT && if_max(st->last_b, A_DIGIT, st))
-		while (B_DIGIT > A_DIGIT && if_max(st->last_b, A_DIGIT, st))
+	if (B_DIGIT > A_DIGIT && if_max(st->last_b, A_DIGIT))
+		while (B_DIGIT > A_DIGIT && if_max(st->last_b, A_DIGIT))
 		{
 			st->a = rev_rotate(&st->a, st);
 			write(1, "rra\n", 4);
 		}
 	else if (B_DIGIT < A_DIGIT)
 	{
-		while (B_DIGIT < A_DIGIT && if_max(st->last_b, B_DIGIT, st))
+		while (B_DIGIT < A_DIGIT && if_max(st->last_b, B_DIGIT))
 		{
 			st->a = rev_rotate(&st->a, st);
 			write(1, "rra\n", 4);
@@ -66,11 +66,11 @@ void	main_alg(t_main *st)
 {
 	while (st->b && B_DIGIT >= st->first_p)
 	{
-		if (is_sort(st->b, st))
+		if (is_sort(st->b))
 		{
 			if (st->b->next->digit && B_DIGIT < st->b->next->digit)
 				swap_first_el(st->b) && print_op("sb\n");
-			while (if_max(st->last_b, B_DIGIT, st))
+			while (if_max(st->last_b, B_DIGIT))
 			{
 				st->a = rev_rotate(&st->a, st);
 				print_op("rra\n");
@@ -123,7 +123,7 @@ void	bit_of_magic(int point, t_main *st)
 	while (size++ < st->count)
 	{
 		if (tmp && tmp->digit >= point)
-			rotate_a(&st->a) && print_op("ra\n") // && system("leaks -q push_swap")
+			rotate_a(&st->a) && print_op("ra\n")
 			&& (new_point_a += tmp->digit) && (st->last_a = tmp);
 		else
 			push_stack(&st->b, &st->a) && print_op("pb\n") \

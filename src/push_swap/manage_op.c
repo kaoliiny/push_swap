@@ -6,7 +6,7 @@
 /*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 18:06:29 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/07 17:36:06 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/03/08 17:08:10 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ bool	push_stack(t_stack **dest, t_stack **src)
 		tmp->next = *dest;
 		*dest = tmp;
 	}
-	tmp = *src;
+	// tmp = *src;
 	*src = (*src)->next;
-	free(tmp);
+	// free(tmp);
 	return (true);
 }
 

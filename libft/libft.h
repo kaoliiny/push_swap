@@ -6,7 +6,7 @@
 /*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/27 20:41:01 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/06 21:13:59 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/03/08 18:01:35 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include <string.h>
+# include <stdbool.h>
 
 typedef struct	s_list
 {
@@ -100,8 +101,9 @@ void			ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 
 int				ft_randint(void);
 void			ft_capitalize(char *str);
-void 			free_array(char***free_me);
+void			free_array(char***free_me);
 void			ft_sort_params(int argc, char **argv);
+bool			is_num(const char *str, void(*f)(int), const int error_num);
 void			sort_int_tab(int **tab, unsigned int size);
 
 int				get_next_line(const int fd, char **line);

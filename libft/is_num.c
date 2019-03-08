@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_array.c                                    :+:      :+:    :+:   */
+/*   is_num.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/06 20:52:34 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/07 18:28:06 by kaoliiny         ###   ########.fr       */
+/*   Created: 2019/03/08 17:25:10 by kaoliiny          #+#    #+#             */
+/*   Updated: 2019/03/08 17:59:58 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-void	free_array(char ***free_me)
+bool	is_num(const char *str, void (*f)(int), int error_num)
 {
-	int	i;
-
-	i = 0;
-	while ((*free_me)[i])
-		free((*free_me)[i++]);
-	free(*free_me);
-	free_me = NULL;
+	if (!str)
+		return (false);
+	while (*str)
+		if (!ft_isdigit((int)*str) && *str != '-')
+			f(error_num);
+		else
+			str++;
+	return (true);
 }
