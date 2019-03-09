@@ -6,7 +6,7 @@
 /*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 18:06:29 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/08 22:33:48 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/03/09 15:09:02 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ bool	rotate_a(t_stack **stack)
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = ft_newlst((*stack)->digit);
-	// tmp = *stack;
+	tmp = *stack;
 	*stack = (*stack)->next;
-	// free(tmp);
+	free(tmp);
 	return (true);
 }
 
