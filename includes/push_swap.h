@@ -6,7 +6,7 @@
 /*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 22:14:48 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/08 20:24:58 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/03/09 17:56:58 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,22 @@
 
 # define A_N_D			st->a->next->digit
 
-typedef struct	t_stack
+# define A_N_N_D		st->a->next->next->digit
+
+typedef struct	s_stack
 {
 	int				digit;
-	struct t_stack	*next;
+	struct s_stack	*next;
 
 }				t_stack;
 
 typedef struct	s_main_st
 {
-	struct t_stack	*a;
-	struct t_stack	*b;
+	struct s_stack	*a;
+	struct s_stack	*b;
 
-	struct t_stack	*last_a;
-	struct t_stack	*last_b;
+	struct s_stack	*last_a;
+	struct s_stack	*last_b;
 
 	int				min;
 	int				max;

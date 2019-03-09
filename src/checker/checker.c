@@ -6,7 +6,7 @@
 /*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 15:07:33 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/06 18:47:13 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/03/09 18:57:49 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ static bool	is_numer(const char *str)
 		return (false);
 	while (*str)
 		if (!ft_isdigit((int)*str) && *str != '-')
-			return (false);
+		{
+			write(1, "error\n", 6);
+			exit (-1);
+		}
 		else
 			str++;
 	return (true);
@@ -67,6 +70,7 @@ static void	check_valid(t_main *st, int argc, char **argv)
 		argv = ft_strsplit(argv[1], ' ');
 		while (argv[i] && is_numer(argv[i]) && (sum += num) | 1)
 			st_create(&st->a, num = ft_atoi(argv[i++]), st);
+		free_array(&argv);
 	}
 	else
 		while (i++ < argc - 1 && is_numer(argv[i]) && (sum += num) | 1)
@@ -77,11 +81,9 @@ static void	check_valid(t_main *st, int argc, char **argv)
 
 static void	manage_op(t_main *st, char *op)
 {
-	if (!ft_strcmp(op, "sa"))
-		swap_first_el(st->a);
-	else if (!ft_strcmp(op, "sb"))
-		swap_first_el(st->b);
-	else if (!ft_strcmp(op, "ss"))
+	(!ft_strcmp(op, "sa")) && swap_first_el(st->a);
+	(!ft_strcmp(op, "sb")) && swap_first_el(st->b);
+	if (!ft_strcmp(op, "ss"))
 		swap_first_el(st->b) && swap_first_el(st->a);
 	else if (!ft_strcmp(op, "pa"))
 		push_stack(&st->a, &st->b);
@@ -119,5 +121,6 @@ int			main(int argc, char **argv)
 	free(op);
 	(is_sorted_stack_a(check.a) && check.b == NULL) ?
 	write(1, "\033[0;92mOK\n", 10) : write(1, "\033[0;91mKO\n", 10);
+	// system("leaks -q checker");
 	return (0);
 }

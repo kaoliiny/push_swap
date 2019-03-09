@@ -6,7 +6,7 @@
 /*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 22:21:43 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/09 15:10:35 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/03/09 18:57:09 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ void	shake_b(int point, int count, t_main *st)
 
 void	algo(t_main *st)
 {
-	if (B_DIGIT > A_DIGIT && if_max(st->last_b, A_DIGIT))
+	if (st->b && B_DIGIT > A_DIGIT && if_max(st->last_b, A_DIGIT))
 		while (B_DIGIT > A_DIGIT && if_max(st->last_b, A_DIGIT))
 		{
 			st->a = rev_rotate(&st->a, st);
 			write(1, "rra\n", 4);
 		}
-	else if (B_DIGIT < A_DIGIT)
+	else if (st->b && B_DIGIT < A_DIGIT)
 	{
 		while (B_DIGIT < A_DIGIT && if_max(st->last_b, B_DIGIT))
 		{
@@ -58,7 +58,7 @@ void	algo(t_main *st)
 		push_stack(&st->a, &st->b) && write(1, "pa\n", 3);
 	}
 	else
-		while (B_DIGIT > A_DIGIT)
+		while (st->b && B_DIGIT > A_DIGIT)
 			rotate_a(&st->a) && write(1, "ra\n", 3);
 }
 
@@ -68,7 +68,8 @@ void	main_alg(t_main *st)
 	{
 		if (is_sort(st->b))
 		{
-			if (st->b->next->digit && B_DIGIT < st->b->next->digit)
+			if (st->b->next && st->b->next->digit
+			&& B_DIGIT < st->b->next->digit)
 				swap_first_el(st->b) && print_op("sb\n");
 			while (if_max(st->last_b, B_DIGIT))
 			{
@@ -96,7 +97,7 @@ void	bit(t_main *st)
 		if (st->a == NULL || st->a->next == NULL || st->a->next->next == NULL)
 			break ;
 	}
-	if (--i && st->a->next && A_DIGIT >= st->a->next->digit)
+	if (--i | 1 && st->a->next && A_DIGIT >= st->a->next->digit)
 		swap_first_el(st->a) && print_op("sa\n");
 	if (is_sorted_stack_a(st->a) && st->b == NULL)
 		return ;

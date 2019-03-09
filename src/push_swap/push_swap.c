@@ -6,7 +6,7 @@
 /*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 22:21:43 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/09 15:10:12 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/03/09 15:25:16 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,5 @@ int		main(int argc, char **argv)
 	if (argc <= 1)
 		manage_error(1);
 	validation(&st, argc, argv);
-	system("leaks -q push_swap");
 	return (0);
 }

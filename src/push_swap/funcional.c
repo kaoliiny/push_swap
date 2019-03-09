@@ -6,7 +6,7 @@
 /*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 22:21:43 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/08 17:57:38 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/03/09 18:05:11 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ ssize_t		ft_atoi_spec(const char *str)
 		sum = sum * 10 + str[i++] - '0';
 		if (sum > INT32_MAX && minus == 1)
 			manage_error(4);
-		if (sum > (unsigned long int)INT32_MIN + 1 && minus == -1)
+		if (sum > (unsigned long int)INT32_MAX + 1 && minus == -1)
 			manage_error(4);
 	}
 	return (sum * minus);

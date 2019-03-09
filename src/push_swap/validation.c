@@ -6,7 +6,7 @@
 /*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 22:21:43 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/08 20:24:13 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/03/09 18:26:44 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	sort_int(int *tab, unsigned int size, t_main *st)
 	int				exchange;
 
 	j = 0;
-	if (!tab || !*tab)
+	if (!tab)
 		return (0);
 	while (j < size)
 	{
@@ -122,11 +122,13 @@ void		validation(t_main *st, int argc, char **argv)
 			stack_create(&st->a, ft_atoi_spec(argv[i]), st);
 	if (is_sorted_stack_a(st->a))
 		return ;
-	if (st->count == 3)
-	{
-		if_max(st->a, A_DIGIT) && rotate_a(&st->a) && write(1, "ra\n", 3);
-		(A_DIGIT > A_N_D) && !is_sorted_stack_a(st->a) && write(1, "sa\n", 3);
-	}
+	if (st->count == 2)
+		write(1, "sa\n", 3);
+	else if (st->count == 3 && (A_DIGIT > A_N_N_D) && A_DIGIT > A_N_D)
+		write(1, "ra\n", 3) && (A_N_D > A_N_N_D) && write(1, "sa\n", 3);
+	else if (st->count == 3 && (A_DIGIT < A_N_N_D)
+		&& A_DIGIT < A_N_D && A_N_D > A_N_N_D)
+		write(1, "ra\n", 3) && write(1, "sa\n", 3) && write(1, "rra\n", 3);
 	else
 		bit_of_magic((st->first_p = median(st->a, st)), st);
 }
