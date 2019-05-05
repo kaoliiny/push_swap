@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: kaoliiny <kaoliiny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 22:21:43 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/09 18:26:44 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/04/16 18:37:53 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,9 @@ void		validation(t_main *st, int argc, char **argv)
 	i = 0;
 	if (argc == 2)
 	{
+		st->count = 0;
 		argv = ft_strsplit(argv[1], ' ');
-		while (argv[i] && is_num(argv[i], &manage_error, 2) && st->count++)
+		while (argv[i] && is_num(argv[i], &manage_error, 2) && st->count++ | 1)
 			stack_create(&st->a, ft_atoi_spec(argv[i++]), st);
 		free_array(&argv);
 	}
@@ -124,11 +125,6 @@ void		validation(t_main *st, int argc, char **argv)
 		return ;
 	if (st->count == 2)
 		write(1, "sa\n", 3);
-	else if (st->count == 3 && (A_DIGIT > A_N_N_D) && A_DIGIT > A_N_D)
-		write(1, "ra\n", 3) && (A_N_D > A_N_N_D) && write(1, "sa\n", 3);
-	else if (st->count == 3 && (A_DIGIT < A_N_N_D)
-		&& A_DIGIT < A_N_D && A_N_D > A_N_N_D)
-		write(1, "ra\n", 3) && write(1, "sa\n", 3) && write(1, "rra\n", 3);
 	else
 		bit_of_magic((st->first_p = median(st->a, st)), st);
 }

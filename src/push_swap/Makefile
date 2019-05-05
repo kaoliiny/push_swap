@@ -13,7 +13,7 @@ LFLAGS :=		-lft -L $(LIB_PATH)
 
 LIB :=			$(LIB_PATH)libft.a
 HFILES :=		push_swap
-FILES :=		alg_second_part algorytm funcional lists_op manage_op push_swap validation
+FILES :=		alg_second_part algorytm funcional lists_op manage_op push_swap_main validation
 
 HDRS :=			$(addprefix $(INC_PATH), $(addsuffix .h, $(HFILES)))
 SRCS :=			$(addprefix $(SRC_PATH), $(addsuffix .c, $(FILES)))

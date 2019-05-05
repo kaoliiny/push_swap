@@ -15,7 +15,7 @@ LFLAGS :=		-lft -L $(LIB_PATH)
 LIB :=			$(LIB_PATH)libft.a
 HFILES :=		push_swap
 FILES :=		checker
-COMMON_FILES :=	lists_op manage_op
+COMMON_FILES :=	lists_op manage_op funcional
 
 HDRS :=			$(addprefix $(INC_PATH), $(addsuffix .h, $(HFILES)))
 SRCS +=			$(addprefix $(SRC_PATH), $(addsuffix .c, $(FILES)))

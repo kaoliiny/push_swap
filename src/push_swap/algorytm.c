@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorytm.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: kaoliiny <kaoliiny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 22:21:43 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/09 18:57:09 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/04/16 18:37:58 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	shake_b(int point, int count, t_main *st)
 	i = false;
 	tmp = st->a;
 	new_point = 0;
-	while (count--)
+	while (count-- && tmp->next->next)
 	{
 		if (!tmp)
 			return ;
@@ -117,16 +117,26 @@ void	bit_of_magic(int point, t_main *st)
 	int		size;
 
 	size = 0;
-	while (size++ < st->count)
+	if (st->count == 3 && (A_DIGIT > A_N_N_D) && A_DIGIT > A_N_D)
+		write(1, "ra\n", 3) && (A_N_D > A_N_N_D) && write(1, "sa\n", 3);
+	else if (st->count == 3 && (A_DIGIT < A_N_N_D)
+			&& A_DIGIT < A_N_D && A_N_D > A_N_N_D)
+		write(1, "sa\n", 3) && write(1, "ra\n", 3);
+	else if (st->count == 3)
+		(A_DIGIT > A_N_D) ? write(1, "sa\n", 3) : write(1, "rra\n", 4);
+	else
 	{
-		if (st->a->digit >= point)
-			rotate_a(&st->a) && print_op("ra\n")
-			&& (st->last_a = st->a);
-		else
-			push_stack(&st->b, &st->a) && print_op("pb\n")
-			&& (B_DIGIT < st->little_pivots[1])
-			&& (st->b->next) && rotate_a(&st->b) && print_op("rb\n");
+		while (size++ < st->count)
+		{
+			if (st->a->digit >= point)
+				rotate_a(&st->a) && print_op("ra\n")
+				&& (st->last_a = st->a);
+			else
+				push_stack(&st->b, &st->a) && print_op("pb\n")
+				&& (B_DIGIT < st->little_pivots[1]) &&
+				(st->b->next) && rotate_a(&st->b) && print_op("rb\n");
+		}
+		if (st->count > 0)
+			bit(st);
 	}
-	if (st->count > 0)
-		bit(st);
 }

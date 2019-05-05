@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alg_second_part.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: kaoliiny <kaoliiny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 22:21:43 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/08 17:55:47 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/04/16 19:44:24 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void		shakin_b(t_main *st, int i)
 	t_stack		*tmp;
 
 	tmp = st->a;
+	if (!st->b || !st->b->next || !st->b->next->next)
+		return ;
 	while (st->b != NULL && st->b->digit >= st->little_pivots[1])
 	{
 		if (st->b->digit <= st->little_pivots[i])
@@ -120,7 +122,7 @@ void		one_more_bit(t_main *st)
 	}
 	while (a_last != NULL && a_last->next != NULL && st->b != NULL)
 	{
-		st->b = rev_rotate(&st->b, st);
+		(st->b->next) && (st->b = rev_rotate(&st->b, st));
 		print_op("rrb\n");
 		while (if_min(st->a, st->b->digit, st))
 			rotate_a(&st->a) && print_op("ra\n");

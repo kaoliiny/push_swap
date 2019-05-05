@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   funcional.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaoliiny <kaoliiny@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: kaoliiny <kaoliiny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 22:21:43 by kaoliiny          #+#    #+#             */
-/*   Updated: 2019/03/09 18:05:11 by kaoliiny         ###   ########.fr       */
+/*   Updated: 2019/04/16 21:51:14 by kaoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void		manage_error(int errno)
+{
+	const char *err_mes[42] = {"",
+		"1. Oh no! Your stack is empty",
+		"2. Seems like your stack consist not only the numbers",
+		"3. Unfortunately your stack doesn't have a good numbers",
+		"4. Sorry, you gave us not only the int numbers",
+		"5. Ufff. Bad operations were found"
+	};
+
+	ft_putendl_fd(err_mes[errno], 2);
+	exit(errno);
+}
 
 bool		print_op(char op[5])
 {
@@ -39,24 +53,6 @@ bool		print_op(char op[5])
 	else
 		write(1, prev_op, 3) && (prev_op = op);
 	return (true);
-}
-
-int			is_sort(t_stack *stack)
-{
-	int		min;
-	t_stack *tmp;
-
-	min = 0;
-	if (!stack)
-		return (0);
-	tmp = stack;
-	while (tmp)
-	{
-		if (stack->digit < tmp->digit && tmp->digit != stack->next->digit)
-			return (0);
-		tmp = tmp->next;
-	}
-	return (1);
 }
 
 void		stack_create(t_stack **a, int integer, t_main *st)
